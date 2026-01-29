@@ -6,4 +6,4 @@ Outage reporting and management system developed during my software engineering 
 
 Live Demo: https://issuetrackr.netlify.app/
 
-**Tech Stack:** React, TypeScript, Node.js, MongoDB, Mantine UI
+Tech Stack: React, TypeScript, Node.js, MongoDB, Mantine UI
