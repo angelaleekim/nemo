@@ -5,6 +5,7 @@ import {
   Button,
   Switch,
   useMantineColorScheme,
+  useComputedColorScheme,
 } from '@mantine/core';
 import { IconSun, IconMoon } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
@@ -13,7 +14,10 @@ import classes from './Dashboard.module.css';
 const Dashboard: React.FC = () => {
   const navigate = useNavigate(); // Initialize navigate
   // const [checkingAuth, setCheckingAuth] = useState(true); // Add state to check authentication
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme(); // Use Mantine's color scheme hook
+  const { setColorScheme } = useMantineColorScheme();
+  const computedColorScheme = useComputedColorScheme('light', {
+    getInitialValueInEffect: true,
+  });
 
   // useEffect(() => {
   //   const token = localStorage.getItem('token');
@@ -32,30 +36,27 @@ const Dashboard: React.FC = () => {
     <MantineProvider>
       <div className={classes.container}>
         <div className={classes.content}>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '20px',
-            }}
-          >
+          <div className={classes.header}>
             <Button
-              onClick={() => navigate('/issue-form')} // Navigate to issue form
-              color="blue"
+              variant="filled"
+              onClick={() => navigate('/issue-form')} // Navigate to outage form
             >
-              + New Issue
+              + New Outage
             </Button>
             <Switch
               size="md"
               onLabel={<IconSun size={16} stroke={2.5} />}
               offLabel={<IconMoon size={16} stroke={2.5} />}
-              checked={colorScheme === 'dark'}
-              onChange={() => toggleColorScheme()}
-              style={{ cursor: 'pointer' }} // Add cursor pointer
+              checked={computedColorScheme === 'dark'}
+              onChange={() =>
+                setColorScheme(
+                  computedColorScheme === 'light' ? 'dark' : 'light'
+                )
+              }
+              className={classes.switch} // Use CSS module class
             />
           </div>
-          <h1>Issue Dashboard</h1>
+          <h1 className={classes.title}>Outage Dashboard</h1>
           <IssueTable />
         </div>
       </div>

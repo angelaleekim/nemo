@@ -1,9 +1,8 @@
-// import React, { useEffect, useState } from 'react';
 import { useForm } from '@mantine/form';
 import { TextInput, Textarea, Button, Box, Select } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { IconX, IconCheck } from '@tabler/icons-react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { IconX, IconCheck, IconArrowNarrowLeft } from '@tabler/icons-react';
+import { Link, useNavigate } from 'react-router-dom';
 import classes from './IssueForm.module.css';
 import '@mantine/notifications/styles.css';
 
@@ -16,25 +15,14 @@ interface FormValues {
 }
 
 const IssueForm: React.FC = () => {
-  const navigate = useNavigate(); // Initialize navigate
-  // const [checkingAuth, setCheckingAuth] = useState(true); // Add state to check authentication
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if (!token) {
-  //     navigate('/login'); // Redirect unauthenticated users to the login page
-  //   } else {
-  //     setCheckingAuth(false); // Allow rendering if authenticated
-  //   }
-  // }, [navigate]);
-
+  const navigate = useNavigate();
   const form = useForm<FormValues>({
     initialValues: {
       title: '',
       description: '',
       priority: '',
       author: '',
-      status: 'pending', // Add default status
+      status: 'pending',
     },
     validate: {
       title: (value: string) =>
@@ -48,14 +36,10 @@ const IssueForm: React.FC = () => {
     },
   });
 
-  // if (checkingAuth) {
-  //   return null; // Prevent rendering until authentication check is complete
-  // }
-
   const handleSubmit = async (values: typeof form.values) => {
     const id = notifications.show({
       loading: true,
-      title: 'Submitting your issue',
+      title: 'Submitting your outage report',
       message: 'Please wait while we process your request...',
       autoClose: false,
       withCloseButton: false,
@@ -72,39 +56,39 @@ const IssueForm: React.FC = () => {
           body: JSON.stringify({
             ...values,
             priority: values.priority,
-            status: values.status, // Ensure status is included
+            status: values.status,
           }),
         }
       );
 
       if (!response.ok) {
-        throw new Error('Failed to create issue');
+        throw new Error('Failed to submit outage report');
       }
 
       const data = await response.json();
-      console.log('Issue created:', data);
+      console.log('Outage created:', data);
 
       notifications.update({
         id,
         color: 'teal',
-        title: 'Issue Created',
-        message: 'Your issue has been successfully created!',
+        title: 'Outage Created',
+        message: 'Your outage has been successfully created!',
         icon: <IconCheck size={18} />,
         loading: false,
         autoClose: 2000,
       });
 
       form.reset();
-      form.setFieldValue('priority', ''); // Reset priority field to null
-      navigate('/dashboard'); // Redirect to dashboard
+      form.setFieldValue('priority', '');
+      navigate('/dashboard');
     } catch (error) {
-      console.error('Error creating issue:', error);
+      console.error('Error creating outage:', error);
 
       notifications.update({
         id,
         color: 'red',
         title: 'Submission Failed',
-        message: 'There was an error creating your issue. Please try again.',
+        message: 'There was an error creating your outage. Please try again.',
         icon: <IconX size={18} />,
         loading: false,
         autoClose: 2000,
@@ -114,11 +98,21 @@ const IssueForm: React.FC = () => {
 
   return (
     <Box className={classes.container}>
-      <h1 className={classes.title}>Report An Issue</h1>
+      <Link to="/dashboard" className={classes.link}>
+        <Button
+          ml="-3rem"
+          c={'#f36a38ff'}
+          color="gray"
+          leftSection={<IconArrowNarrowLeft />}
+          variant="subtle"
+        ></Button>
+      </Link>
+
+      <h1 className={classes.title}>Report An Outage</h1>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <TextInput
           label="Title"
-          placeholder="Enter issue title"
+          placeholder="Enter outage title"
           {...form.getInputProps('title')}
           className={classes.input}
         />
@@ -141,12 +135,17 @@ const IssueForm: React.FC = () => {
         />
         <Textarea
           label="Description"
-          placeholder="Enter issue description"
+          placeholder="Enter outage description"
           {...form.getInputProps('description')}
           className={classes.input}
           minRows={5}
         />
-        <Button type="submit" className={classes.button} fullWidth>
+        <Button
+          variant="filled"
+          type="submit"
+          className={classes.button}
+          fullWidth
+        >
           Submit
         </Button>
       </form>

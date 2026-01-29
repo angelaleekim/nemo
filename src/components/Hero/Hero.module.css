@@ -4,18 +4,39 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  text-align: left;
   padding: 20px;
 }
 
+.text {
+  width: 45vw;
+}
+
 .title {
-  font-size: 2.5rem;
+  font-size: 4rem;
   font-weight: bold;
-  margin: 0 0 10px;
+  text-align: left;
+  background: linear-gradient(
+    165deg,
+    #ffa500 0%,
+    #ff7f50 30%,
+    #ff6347 70%,
+    #ff4500 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subheading {
+  color: #4b5563;
+  font-weight: 400;
+  font-size: 1.5rem;
 }
 
 .subtitle {
   font-size: 1.2rem;
+  color: #5c6879;
+  margin: 3rem 0px 4rem 0px;
 }
 
 .buttonContainer {
@@ -25,18 +46,27 @@
 }
 
 .button {
-  background-color: #007bff;
+  background: linear-gradient(
+    165deg,
+    #ffa500 0%,
+    #ff7f50 30%,
+    #ff6347 70%,
+    #ff4500 100%
+  );
   color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
+  font-weight: 600;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to bottom, #ff7f50 0%, #ff4500 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 99, 71, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -57,4 +87,15 @@
     padding: 8px 16px;
     font-size: 0.9rem;
   }
+}
+
+/* Fallback for Mantine dark mode */
+[data-mantine-color-scheme='dark'] .subheading,
+html[data-mantine-color-scheme='dark'] .subheading {
+  color: #e2e8f0;
+}
+
+[data-mantine-color-scheme='dark'] .subtitle,
+html[data-mantine-color-scheme='dark'] .subtitle {
+  color: #cbd5e0;
 }

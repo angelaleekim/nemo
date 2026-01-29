@@ -11,6 +11,49 @@ a {
   background-color: aqua;
 }
 
+/* Or alternatively, target only filled variant (cleaner approach) */
+.mantine-Button-root[data-variant='filled'] {
+  background: linear-gradient(
+    165deg,
+    #ffa500 0%,
+    #ff7f50 30%,
+    #ff6347 70%,
+    #ff4500 100%
+  ) !important;
+  color: white !important;
+  border: none !important;
+  transition: all 0.3s;
+}
+
+/* Optional: Add hover effect */
+.mantine-Button-root[data-variant='filled']:hover {
+  background: linear-gradient(
+    165deg,
+    #ff8c00 0%,
+    #ff6347 30%,
+    #ff4500 70%,
+    #ff2400 100%
+  ) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 99, 71, 0.3);
+}
+/* Mantine Pagination styling */
+.mantine-Pagination-control[data-active] {
+  background: linear-gradient(
+    165deg,
+    #ffa500 0%,
+    #ff7f50 30%,
+    #ff6347 70%,
+    #ff4500 100%
+  ) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.mantine-Pagination-control[data-active]:hover {
+  box-shadow: 0 4px 8px rgba(255, 99, 71, 0.3) !important;
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 14px;

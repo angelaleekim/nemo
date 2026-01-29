@@ -8,3 +8,32 @@
   flex: 1;
   padding: 0 3em;
 }
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 2rem;
+}
+
+.switch {
+  cursor: pointer;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 0 10px;
+  text-align: left;
+  background: linear-gradient(
+    165deg,
+    #ffa500 0%,
+    #ff7f50 15%,
+    #ff6347 70%,
+    #ff4500 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

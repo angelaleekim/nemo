@@ -1,7 +1,12 @@
 .navLinkLabel {
   display: flex;
   align-items: left;
-  padding: 0.5em;
+  padding: 0.5em 0;
+}
+
+.link {
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .icon {
@@ -16,6 +21,17 @@
 }
 
 .drawerTitle {
+  font-size: 2rem;
+  padding: 1rem 0 0 1rem;
   font-weight: bold;
-  padding: 1em;
+  background: linear-gradient(
+    165deg,
+    #ffa500 0%,
+    #ff7f50 15%,
+    #ff6347 70%,
+    #ff4500 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

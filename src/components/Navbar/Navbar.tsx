@@ -28,23 +28,22 @@ const Navbar: React.FC = () => {
         onClose={handleClose}
         title={
           <Link to="/" className={classes.drawerTitle} onClick={handleClose}>
-            Trackr
+            NEMO
           </Link>
         }
-        padding="sm"
-        size="sm"
+        size="xs"
         classNames={{ title: classes.drawerTitle }}
       >
         <NavLink
           label={
             <div className={classes.navLinkLabel}>
-              <IconBug size={16} className={classes.icon} />
+              <IconBug size={20} className={classes.icon} />
               <Link
                 to="/issue-form"
                 className={classes.link}
                 onClick={handleClose}
               >
-                Report an Issue
+                Report An Outage
               </Link>
             </div>
           }
@@ -52,13 +51,13 @@ const Navbar: React.FC = () => {
         <NavLink
           label={
             <div className={classes.navLinkLabel}>
-              <IconList size={16} className={classes.icon} />
+              <IconList size={20} className={classes.icon} />
               <Link
                 to="/dashboard"
                 className={classes.link}
                 onClick={handleClose}
               >
-                View All Issues
+                View All Outages
               </Link>
             </div>
           }
@@ -66,7 +65,7 @@ const Navbar: React.FC = () => {
         <NavLink
           label={
             <div className={classes.navLinkLabel}>
-              <IconLogout size={16} className={classes.icon} />
+              <IconLogout size={20} className={classes.icon} />
               <Link
                 to="/"
                 className={classes.link}
