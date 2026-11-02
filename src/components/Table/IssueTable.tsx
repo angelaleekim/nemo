@@ -10,6 +10,7 @@ import {
   Button,
   Loader,
   SegmentedControl,
+  Group,
 } from '@mantine/core';
 import { IconDots, IconTrash, IconCheck, IconX } from '@tabler/icons-react'; // Import icons
 import { notifications } from '@mantine/notifications';
@@ -313,12 +314,30 @@ const IssueTable: React.FC = () => {
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
-      <Modal opened={opened} onClose={close} title="Issue Details" centered>
+      <Modal
+        opened={opened}
+        onClose={close}
+        centered
+        radius="lg"
+        padding="xl"
+        withCloseButton={false}
+      >
         {selectedIssue && (
           <div>
-            <p>
-              <strong>Title:</strong> {selectedIssue.title}
-            </p>
+            <Group
+              justify="space-between"
+              align="flex-start"
+              wrap="nowrap"
+              preventGrowOverflow={false}
+            >
+              <p style={{ margin: 0 }}>
+                <strong>Title:</strong> {selectedIssue.title}
+              </p>
+              <Modal.CloseButton
+                radius="xl"
+                style={{ marginTop: -12, marginRight: -10 }}
+              />
+            </Group>
             <p>
               <strong>Author:</strong> {selectedIssue.author}
             </p>
@@ -345,6 +364,7 @@ const IssueTable: React.FC = () => {
                     handleUpdateStatus(selectedIssue._id, 'in_progress')
                   }
                   color="blue"
+                  radius="xl"
                   style={{ marginRight: '10px' }}
                 >
                   Mark as In Progress
@@ -354,6 +374,7 @@ const IssueTable: React.FC = () => {
                     handleUpdateStatus(selectedIssue._id, 'resolved')
                   }
                   color="green"
+                  radius="xl"
                 >
                   Mark as Resolved
                 </Button>
@@ -365,6 +386,7 @@ const IssueTable: React.FC = () => {
                   handleUpdateStatus(selectedIssue._id, 'resolved')
                 }
                 color="green"
+                radius="xl"
               >
                 Mark as Resolved
               </Button>

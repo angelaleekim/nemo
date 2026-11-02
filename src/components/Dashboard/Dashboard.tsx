@@ -56,7 +56,7 @@ const Dashboard: React.FC = () => {
               className={classes.switch} // Use CSS module class
             />
           </div>
-          <h1 className={classes.title}>Outage Dashboard</h1>
+          <h1 className={classes.title}>Outages</h1>
           <IssueTable />
         </div>
       </div>

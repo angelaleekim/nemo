@@ -1,7 +1,12 @@
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import './global.css';
-import { MantineProvider } from '@mantine/core';
+import {
+  ActionIcon,
+  Button,
+  createTheme,
+  MantineProvider,
+} from '@mantine/core';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
@@ -11,10 +16,19 @@ import IssueForm from './components/IssueForm/IssueForm';
 import Navbar from './components/Navbar/Navbar';
 import { Notifications } from '@mantine/notifications';
 
+const theme = createTheme({
+  fontFamily: 'Figtree, sans-serif',
+  headings: { fontFamily: 'Figtree, sans-serif' },
+  components: {
+    Button: Button.extend({ defaultProps: { radius: 'lg' } }),
+    ActionIcon: ActionIcon.extend({ defaultProps: { radius: 'lg' } }),
+  },
+});
+
 export default function App() {
   return (
     <>
-      <MantineProvider>
+      <MantineProvider theme={theme}>
         <Notifications position="top-right" zIndex={1000} />
         <Router>
           <Routes>
